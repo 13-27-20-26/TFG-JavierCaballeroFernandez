@@ -75,10 +75,3 @@ def buscar_AoA(file_path, cl_target, reynolds_target):
 
     return alpha_target
 
-# Example usage
-# file_path = 'Foils/Análisis_2D_Epler817.xlsx'
-# cl_target = 0.5
-# reynolds_target = 3.5e6
-# alpha_target = buscar_AoA(file_path, cl_target, reynolds_target)
-# print(f"Interpolated alpha for CL {cl_target} and Reynolds {reynolds_target}: {alpha_target}")
-

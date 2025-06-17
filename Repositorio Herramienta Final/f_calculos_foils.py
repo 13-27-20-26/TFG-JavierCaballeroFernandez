@@ -56,23 +56,3 @@ def calculos_foils(datos, file_path, velocidad):
     D_total = D1 + D2 + 2 * D1a + D2a
 
     return D_total, L_total, L1, L2
-
-
-# Ejemplo de uso
-# file_path = 'Foils/Análisis_2D_Epler817.xlsx'
-# datos = {
-#     'b': 2.589, 'T': 0.4, 'Puntal': 1.35, 'h_codillo': 0.5,
-#     'm': 2415, 'LCG': 4, 'VCG': 0.664,
-#     'beta': 18, 'f': 1.36, 'epsilon': 0,
-#     'Crought': 0.0004,'Cd_aero': 0.8,
-#     'g': 9.81, 'rho': 1025, 'rho_aero': 1.204, 'nu': 1e-6,
-#     'VS': 0.105, 'LS': 4.244, 'phi': 0, 'beta2': 18,
-#     'x1': 5.144, 's1': 2, 'c1': 0.27, 'K1': 1.2,
-#     'x2': 0.679, 's2': 1.2, 'c2': 0.16, 'K2': 1.2,
-#     'alpha1': 3, 'alpha2': 3.25 ,
-#     'h1': 0.8, 'c1a': 0.27, 'Cd_01a': 0.009,
-#     'h2': 0.7, 'c2a': 0.2, 'Cd_02a': 0.01,
-# }
-# velocidad = 18*0.514444  # Velocidad en nudos
-# Dt, Lt, L1, L2 = calculos_foils(datos, file_path, velocidad)
-# print(Dt,Lt,L1,L2)

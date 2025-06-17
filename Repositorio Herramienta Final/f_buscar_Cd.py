@@ -75,12 +75,3 @@ def buscar_Cd(file_path, alpha_target, reynolds_target):
     cd_target = interpolar_Cd(interpolated_df, alpha_target)
 
     return cd_target
-
-# Example usage
-# file_path = 'Foils/Análisis_2D_Epler817.xlsx'
-# alpha_target = 2.0
-# reynolds_target = 3.5e6
-
-# cd_target = buscar_Cd(file_path, alpha_target, reynolds_target)
-# print(f"Interpolated CD for alpha {alpha_target} and Reynolds {reynolds_target}: {cd_target}")
-

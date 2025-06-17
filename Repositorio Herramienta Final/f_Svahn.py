@@ -26,7 +26,7 @@ def calcular_Svahn(datos, vmin, vmax):
     R_totales = []
     Trims = []
 
-    # Velocidades, PENDIENTE: hacer que la vmin y la vmax sean inputs de la función, a parte del diccionario datos
+    # Velocidades
     Vel_nudos = np.arange(vmin, vmax, 0.5)  # knots
     Vel_mps = Vel_nudos * 0.514444  # m/s
 
@@ -54,7 +54,7 @@ def calcular_Svahn(datos, vmin, vmax):
             for omega in Omega:
                 # Cálculos iniciales
                 Fl1 = omega * m * g  # N
-                Clbeta = Fl1 / (0.5 * rho * U**2 * b**2)  # Coefficient of lift for the first step
+                Clbeta = Fl1 / (0.5 * rho * U**2 * b**2)  # Coeficiente de sustentación de cuepo de proa
                 Cl0 = fsolve(ClB, 0.1)[0]  # Zero-deadrise Cl
                 lamda1 = fsolve(lam, 0.1)[0]  # Lambda
                 Lk1 = lamda1 * b + (b * np.tan(np.radians(beta1))) / (2 * np.pi * np.tan(np.radians(tau)))  # m
@@ -80,9 +80,9 @@ def calcular_Svahn(datos, vmin, vmax):
                 lamda2 = (Lk2 / b2l) - (Ll2 / (2 * b2l))  # Lambda
 
                 # Coeficiente de sustentación del segundo step
-                Cv2 = U / np.sqrt(g * b2l)  # Speed Coefficient for the second step
+                Cv2 = U / np.sqrt(g * b2l)  # Coeficiente de velocidad para el cuerpo de popa
                 Cl0_2 = tau2_degrees * (0.012 * (np.sqrt(lamda2)) + 0.0055 * ((lamda2**2.5) / (Cv2**2)))
-                Clbeta_2 = Cl0_2 - 0.0065 * beta2l_degrees * (Cl0_2**0.6)  # Coefficient of lift for the second step
+                Clbeta_2 = Cl0_2 - 0.0065 * beta2l_degrees * (Cl0_2**0.6)  # Coeficiente de sustentación del cuerpo de popa
                 Fl2l = Clbeta_2 * (0.5 * rho * U**2 * b2l**2) * np.cos(np.radians(beta2 - beta2l_degrees))  # N
                 Fl2 = Fl2l * np.cos(np.radians(tau - tau2_degrees))  # N
 
@@ -137,40 +137,3 @@ def calcular_Svahn(datos, vmin, vmax):
         Trims.append(tau)  # Añadir el trimado a la lista
 
     return R_totales, Trims, Vel_nudos
-
-# Llamada a la función:
-# datos = {
-#     'b': 2.589, 'T': 0.4, 'Puntal': 1.35, 'h_codillo': 0.5,
-#     'm': 2415, 'LCG': 4, 'VCG': 0.664,
-#     'beta': 18, 'f': 1.36, 'epsilon': 0,
-#     'Crought': 0.0004,'Cd_aero': 0.8,
-#     'g': 9.81, 'rho': 1025, 'rho_aero': 1.204, 'nu': 1e-6,
-#     'VS': 0.105, 'LS': 4.244, 'phi': 0, 'beta2': 18,
-#     'x1': 5.144, 's1': 2, 'c1': 0.27,
-#     'x2': 0.679, 's2': 1.2, 'c2': 0.16,
-#     'h1': 0.8, 'c1a': 0.27, 'Cd_01a': 0.009,
-#     'h2': 0.7, 'c2a': 0.2, 'Cd_02a': 0.01,
-# }
-# resistencias, trims, velocities = calcular_Svahn(datos, 18, 40)
-# print('Resistencias totales: ', resistencias)
-# print('Trims: ', trims)
-
-# #Graficar los resultados
-# import matplotlib.pyplot as plt
-# plt.figure(figsize=(10, 5))
-# plt.plot(velocities, resistencias, label='Resistencia Total')
-# plt.xlabel('Velocidad (nudos)')
-# plt.ylabel('Resistencia (N)')
-# plt.title('Resistencia Total vs Velocidad')
-# plt.legend()
-# plt.grid()
-# plt.show()
-# # Graficar los trims
-# plt.figure(figsize=(10, 5))
-# plt.plot(velocities, trims, label='Trim')
-# plt.xlabel('Velocidad (nudos)')
-# plt.ylabel('Trim (grados)')
-# plt.title('Trim vs Velocidad')
-# plt.legend()
-# plt.grid()
-# plt.show()
